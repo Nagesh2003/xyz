@@ -1,5 +1,1 @@
-| TC ID | Test Case Description               | Steps to Execute                                                                                       | Test Data                                      | Expected Result                           |
-| ----- | ----------------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------- | ----------------------------------------- |
-| TC001 | Verify login with valid credentials | 1. Open browser<br>2. Navigate to login page<br>3. Enter valid username and password<br>4. Click login | Username: `student`<br>Password: `Password123` | User should be redirected to success page |
-| TC002 | Verify login with invalid username  | Enter invalid username and valid password and click login                                              | Username: `invalid`<br>Password: `Password123` | Error message displayed                   |
-| TC003 | Verify login with invalid password  | Enter valid username and invalid password and click login                                              | Username: `student`<br>Password: `wrongpass`   | Error message displayed                   |
+.
