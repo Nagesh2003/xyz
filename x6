@@ -1,0 +1,86 @@
+lab6:
+
+maven prject
+give the name
+
+
+pom.xml
+=========
+<dependencies>
+    <!-- Selenium Java -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.20.0</version>
+    </dependency>
+
+    <!-- WebDriverManager to handle driver binaries automatically -->
+    <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>5.7.0</version>
+    </dependency>
+</dependencies>
+
+in main/java
+
+packge  com.selenium.test
+
+class  LoginTest
+
+package com.selenium.test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class LoginTest {
+
+    public static void main(String[] args) throws InterruptedException {
+        // Setup ChromeDriver using WebDriverManager
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+
+        // Open login page
+        driver.get("https://practicetestautomation.com/practice-test-login/");
+        Thread.sleep(2000); // Wait 2 seconds
+
+        // Maximize browser
+        driver.manage().window().maximize();
+        Thread.sleep(1000);
+
+        // Enter username
+        WebElement username = driver.findElement(By.id("username"));
+        username.sendKeys("student");
+        Thread.sleep(1500);
+
+        // Enter password
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("Password123");
+        Thread.sleep(1500);
+
+        // Click login
+        WebElement loginButton = driver.findElement(By.id("submit"));
+        loginButton.click();
+        Thread.sleep(3000);
+
+        // Validate login success
+        String expectedURL = "https://practicetestautomation.com/logged-in-successfully/";
+        String actualURL = driver.getCurrentUrl();
+
+        if (actualURL.equals(expectedURL)) {
+            System.out.println("✅ Login successful!");
+        } else {
+            System.out.println("❌ Login failed!");
+        }
+
+        Thread.sleep(2000); // Pause before closing
+
+        // Close browser
+        driver.quit();
+    }
+}
+
+
