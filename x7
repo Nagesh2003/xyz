@@ -1,0 +1,111 @@
+package pg7;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TC001_ValidLoginTest {
+
+    public static void main(String[] args) throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://practicetestautomation.com/practice-test-login/");
+        driver.manage().window().maximize();
+        Thread.sleep(2000);
+
+        // Enter valid username and password
+        driver.findElement(By.id("username")).sendKeys("student");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password")).sendKeys("Password123");
+        Thread.sleep(1000);
+
+        driver.findElement(By.id("submit")).click();
+        Thread.sleep(3000);
+
+        // Verify successful login
+        String currentUrl = driver.getCurrentUrl();
+        if (currentUrl.contains("logged-in-successfully")) {
+            System.out.println("✅ TC001 Passed - Login Successful");
+        } else {
+            System.out.println("❌ TC001 Failed - Login Failed");
+        }
+
+        driver.quit();
+    }
+}
+
+======================
+
+package pg7;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TC002_InvalidUsername {
+
+    public static void main(String[] args) throws InterruptedException {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://practicetestautomation.com/practice-test-login/");
+        driver.manage().window().maximize();
+        Thread.sleep(2000);
+
+        driver.findElement(By.id("username")).sendKeys("invalid");
+        Thread.sleep(1000);
+        driver.findElement(By.id("password")).sendKeys("Password123");
+        Thread.sleep(1000);
+
+        driver.findElement(By.id("submit")).click();
+        Thread.sleep(3000);
+
+        WebElement error = driver.findElement(By.id("error"));
+        if (error.isDisplayed()) {
+            System.out.println("✅ TC002 Passed - Error message displayed");
+        } else {
+            System.out.println("❌ TC002 Failed - No error message");
+        }
+
+        driver.quit();
+    }
+}
+
+
+
+<dependencies>
+    <!-- Selenium Java -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.20.0</version>
+    </dependency>
+
+    <!-- WebDriverManager to handle driver binaries automatically -->
+    <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>5.7.0</version>
+    </dependency>
+    <dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-simple</artifactId>
+    <version>2.0.13</version>
+</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
